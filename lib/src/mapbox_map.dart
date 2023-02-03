@@ -53,20 +53,15 @@ class MaplibreMap extends StatefulWidget {
       AnnotationType.line,
       AnnotationType.circle,
     ],
-  })  : assert(annotationOrder.length <= 4),
+  })  : assert(annotationOrder.length == 4),
         assert(annotationConsumeTapEvents.length > 0),
         super(key: key);
 
-  /// Defines the layer order of annotations displayed on map
-  ///
-  /// Any annotation type can only be contained once, so 0 to 4 types
-  ///
-  /// Note that setting this to be empty gives a big perfomance boost for
-  /// android. However if you do so annotations will not work.
+  /// Defined the layer order of annotations displayed on map
+  /// (must contain all annotation types, 4 items)
   final List<AnnotationType> annotationOrder;
 
-  /// Defines the layer order of click annotations
-  ///
+  /// Defined the layer order of click annotations
   /// (must contain at least 1 annotation type, 4 items max)
   final List<AnnotationType> annotationConsumeTapEvents;
 
@@ -233,9 +228,6 @@ class _MaplibreMapState extends State<MaplibreMap> {
 
   @override
   Widget build(BuildContext context) {
-    assert(
-        widget.annotationOrder.toSet().length == widget.annotationOrder.length,
-        "annotationOrder must not have duplicate types");
     final Map<String, dynamic> creationParams = <String, dynamic>{
       'initialCameraPosition': widget.initialCameraPosition.toMap(),
       'options': _MapboxMapOptions.fromWidget(widget).toMap(),

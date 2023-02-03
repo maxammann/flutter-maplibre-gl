@@ -279,7 +279,7 @@ final class MapboxMapController
     }
   }
 
-  
+
 
   @SuppressWarnings({"MissingPermission"})
   private void enableLocationComponent(@NonNull Style style) {
@@ -611,7 +611,6 @@ final class MapboxMapController
 
   @Override
   public void onMethodCall(MethodCall call, MethodChannel.Result result) {
-
     switch (call.method) {
       case "map#waitForMap":
         if (mapboxMap != null) {
